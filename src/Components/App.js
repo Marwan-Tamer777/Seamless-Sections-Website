@@ -1,6 +1,6 @@
 import logo from '../logo.svg';
 import '../CSS/App.css';
-import SectionWrapper from "./HeaderSectionWrapper"
+import SectionWrapper from "./Wrapper/HeaderSectionWrapper"
 import { useEffect } from 'react';
 
   //Observer callback function, updates each section opacity by it's intersection percentage.
@@ -39,26 +39,22 @@ function App() {
 
   return (
     <div className="App">
-
       {/*
         The Sections are fixed size to allow user to scroll through them like a normal page.
         but the content itself is fixed to top of screen to allow the seamless fade in and out effect between sections.
       */}
       <div id="header_panels_fix_to">
+        <SectionWrapper>
+          <div>ONE</div>
+        </SectionWrapper>
 
-        <SectionWrapper><div>sfajbfgkjasfgkjabs</div></SectionWrapper>
-        <div className="panel w-full h-screen">
-          <div className="fixed top-[50vh] left-[50vw] text-black">ONE</div>
-        </div>
-        <div className="panel w-full h-screen">
-          <div className="fixed top-[50vh] left-[50vw] text-black">TWO</div>
-        </div>
-        <div className="panel w-full h-screen">
-          <div className="fixed top-[50vh] left-[50vw] text-black">
-            THREE
-          </div>
-        </div>
+        <SectionWrapper>
+          <div>TWO</div>
+        </SectionWrapper>
 
+        <SectionWrapper>
+          <div>THREE</div>
+        </SectionWrapper>
       </div>
     </div>
   );

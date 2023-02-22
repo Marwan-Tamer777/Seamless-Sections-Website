@@ -2,11 +2,12 @@
 function HeaderSectionWrapper(props) {
     let {children} = props
     return (
-        <p>
-            TEST
+      <div className="panel w-screen min-h-screen">
+        <div className="fixed top-[50vh] left-[50vw]">
             {children}
-        </p>
-    )
+        </div>
+      </div>
+    );
 }
 
 export default HeaderSectionWrapper;;

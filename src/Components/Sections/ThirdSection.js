@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import neb from "../../Images/nubelson-fernandes-QNch8putqnU-unsplash.jpg"
 function ThirdSection() {
 
     useEffect(() => {
@@ -10,7 +10,11 @@ function ThirdSection() {
         );
     }, []);
 
-  return <div id="section_three">THREE</div>;
+  return (
+    <div id="section_three" className="w-full h-full">
+      <img src={neb} alt="neb" className="object-cover w-full h-full"></img>
+    </div>
+  );
 }
 
 export default ThirdSection;

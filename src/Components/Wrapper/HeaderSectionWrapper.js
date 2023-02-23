@@ -5,7 +5,7 @@ function HeaderSectionWrapper(props) {
 
     return (
       <div className="wrapper w-screen min-h-screen">
-        <div className=" child-container fixed top-[50vh] left-[50vw]">
+        <div className=" child-container fixed top-0 left-0 h-full w-full">
             {children}
         </div>
       </div>

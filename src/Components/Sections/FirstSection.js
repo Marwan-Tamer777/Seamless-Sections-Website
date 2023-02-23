@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-
+import axp from "../../Images/axp-photography-yEIrpmnHd2g-unsplash.jpg"
 
 function FirstSection() {
 
@@ -12,8 +12,9 @@ function FirstSection() {
   },[])
 
   return (
-    <div id="section_one">
-        One
+    <div id="section_one" className="w-full h-full">
+        <img src={axp} alt="axp" className="object-cover w-full h-full">
+        </img>
     </div>
   );
 }

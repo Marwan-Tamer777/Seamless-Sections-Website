@@ -2,12 +2,22 @@ import logo from '../logo.svg';
 import '../CSS/App.css';
 import SectionWrapper from "./Wrapper/HeaderSectionWrapper"
 import { useEffect } from 'react';
+import FirstSection from './Sections/FirstSection';
+import SecondSection from "./Sections/SecondSection";
+import ThirdSection from './Sections/ThirdSection';
 
+import { opacityEvent } from "../Utils/Events/Sections";
   //Observer callback function, updates each section opacity by it's intersection percentage.
   let callback = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = entry.intersectionRatio;
+
+        //Whenever we update the wrapper opacity we will also invoke 
+        //A custom event to invoke the wrapper's content of the update.
+        let containerChild = entry.target.querySelector(".child-container").firstChild;
+        containerChild.dispatchEvent(opacityEvent(entry.intersectionRatio));
+
       } else {
         entry.target.style.opacity = 0;
       }
@@ -33,7 +43,7 @@ function App() {
     };
 
     let observer = new IntersectionObserver(callback, options);
-    document.querySelectorAll(".panel").forEach((item)=>(observer.observe(item)))
+    document.querySelectorAll(".wrapper").forEach((item)=>(observer.observe(item)))
 
   },[])
 
@@ -43,17 +53,17 @@ function App() {
         The Sections are fixed size to allow user to scroll through them like a normal page.
         but the content itself is fixed to top of screen to allow the seamless fade in and out effect between sections.
       */}
-      <div id="header_panels_fix_to">
+      <div id="header_panels_fix_to" className='overflow-x-hidden'>
         <SectionWrapper>
-          <div>ONE</div>
+          <FirstSection />
         </SectionWrapper>
 
         <SectionWrapper>
-          <div>TWO</div>
+          <SecondSection />
         </SectionWrapper>
 
         <SectionWrapper>
-          <div>THREE</div>
+          <ThirdSection />
         </SectionWrapper>
       </div>
     </div>

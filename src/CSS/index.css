@@ -16,6 +16,8 @@ code {
     monospace;
 }
 
-.weird{
-  @apply bg-purple-800
+.purple-circle{
+  background-image: linear-gradient(180deg, #ff44d4, rgba(255, 68, 212, 0));
+  width: 20px;
+  height: 20px;
 }

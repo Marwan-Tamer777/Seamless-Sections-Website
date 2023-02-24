@@ -1,4 +1,4 @@
-import logo from '../logo.svg';
+
 import '../CSS/App.css';
 import SectionWrapper from "./Wrapper/HeaderSectionWrapper"
 import { useEffect } from 'react';
@@ -11,12 +11,13 @@ import { opacityEvent } from "../Utils/Events/Sections";
   let callback = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = entry.intersectionRatio;
+        let newRatio = (entry.intersectionRatio*entry.target.clientHeight)/(window.innerHeight)
+        entry.target.style.opacity = newRatio;
 
         //Whenever we update the wrapper opacity we will also invoke 
         //A custom event to invoke the wrapper's content of the update.
         let containerChild = entry.target.querySelector(".child-container").firstChild;
-        containerChild.dispatchEvent(opacityEvent(entry.intersectionRatio));
+        containerChild.dispatchEvent(opacityEvent(newRatio));
 
       } else {
         entry.target.style.opacity = 0;
@@ -30,16 +31,16 @@ function App() {
   useEffect(()=>{
     //On mount create a list of 100 thresholds and an observer.
     //whenever 0.01 0.02 0.03 ...... 0.98 0.99 1 of a section is passed it, the observer will update opacity.
-    // let num =0,thresholds = [];
-    // while(num<=1){
-    //   num+=0.01;
-    //   thresholds.push(num);
-    // }
+    let num =0,thresholds = [];
+    while(num<=1){
+      num+=0.01;
+      thresholds.push(num);
+    }
 
     let options = {
       root: null,
       rootMargin: "0px",
-      //threshold: [0,1]//[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
+      threshold: thresholds//[0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1]
     };
 
     let observer = new IntersectionObserver(callback, options);
